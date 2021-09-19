@@ -3,7 +3,7 @@
 @section('content')
     <div class="jumbotron bg-style jumbotron-fluid" style="background-image: url('{{ asset('images/banner.jpg') }}');  ">
         <div class="container text-center">
-            <h1 class="display-4">SHOP</h1>
+            <h1 class="display-4">{{ $label }}</h1>
         </div>
     </div>
     <div class="container" >
@@ -14,7 +14,7 @@
                 @foreach($categories as $category)
 
                     <li>
-                        <a href="#">{{ $category['name'] }}</a> <br>
+                        <a href="{{ url('category/'.$category['id']) }}">{{ $category['name'] }}</a> <br>
                     </li>
                     @endforeach
                 </ul>

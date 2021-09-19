@@ -18,6 +18,7 @@ Route::get('/', function () {
 });
 Route::get('/'					,	'HomeController@index');
 Route::get('/shop'					,	'HomeController@product_list');
+Route::get('/category/{id}'					,	'HomeController@product_category');
 Route::get('/details/{id?}'					,	'HomeController@product_details');
 Route::post('/add_to_cart'					,	'CartController@add_to_cart');
 Route::get('/cart'					,	'CartController@cart');

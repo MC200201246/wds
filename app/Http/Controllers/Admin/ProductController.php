@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Products;
 use App\Models\Categories;
 use App\Models\Brands;
-
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -19,6 +19,7 @@ class ProductController extends Controller
     private $db_key   =  "id";
     private $user = [];
     private $perpage = 500;
+    private $directory = "product_images";
 
     function index(Request $request){
 
@@ -51,6 +52,11 @@ class ProductController extends Controller
         if($request->isMethod('post')){
             $data = $request->all();
             $this->cleanData($data);
+            if ($request->hasFile('image')) {
+                $file = $request->file('image');
+                $filename = Storage::putFile($this->directory, $file);
+                $data['image'] = asset('storage/').'/'.$filename;
+            }
             // Utility::appendRole($data);
            
             $Obj         = new Products;
@@ -85,7 +91,12 @@ class ProductController extends Controller
     {
         if($request->isMethod('post')){
             $data = $request->all();
-            $this->cleanData($data);   
+            $this->cleanData($data);
+            if ($request->hasFile('image')) {
+                $file = $request->file('image');
+                $filename = Storage::putFile($this->directory, $file);
+                $data['image'] = asset('storage/').'/'.$filename;
+            } 
            
             $Obj         = Products::find($id);
             $Obj->update($data);

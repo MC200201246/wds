@@ -19,7 +19,7 @@
 									<span>Add {{$module['singular']}}</span>
 								</span>
 							</a>
-						</p>
+						</p>                                                                 
 					</div>
 					<div class="card-body">
 						<div class="table-responsive">
@@ -41,7 +41,7 @@
 										<td>{{$val['name']}}</td>
 										<td>{{$val['description']}}</td>
 										<td style="">
-											<a class="dropdown-item delete"  href="javascript:void(0);" data-url="{{ route('category_delete').'/'.$val[$module['db_key']] }}" data-remove="list_{{$val[$module['db_key']]}}" style="display: inline;"><i class="fa fa-trash"></i> Delete</a> | 
+											<a class="dropdown-item delete"  href="javascript:void(0);" data-url="{{ route('brand_delete').'/'.$val[$module['db_key']] }}" data-remove="list_{{$val[$module['db_key']]}}" style="display: inline;"><i class="fa fa-trash"></i> Delete</a> | 
 											<a href="javascript:void(0);" data-target="#data_modal" data-toggle="modal" onclick="loadModal('{{$module['action']}}/edit','{{$val[$module['db_key']]}}')" style="display: inline;">
 												<i class="fa fa-edit"></i> Edit
 											</a>

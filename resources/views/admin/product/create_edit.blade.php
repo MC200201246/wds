@@ -9,7 +9,7 @@
             </span>
         </button>
     </div>
-    <form action="{{$action}}" method="post" class="make_ajax" >
+    <form action="{{$action}}" method="post" class="make_ajax" enctype="multipart/form-data"  >
 
         <div class="modal-body">
             <div class="row">
@@ -28,7 +28,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="image" class="control-label">image</label>
-                        <input type='text' name="image" id="image" class="form-control" required=""  value="{{@$row['image']}}" />
+                        <input type='file' name="image" id="image" class="form-control" required="" />
                     </div>
                 </div>
                 <div class="col-md-6">

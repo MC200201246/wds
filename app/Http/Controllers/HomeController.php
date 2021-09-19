@@ -14,8 +14,8 @@ class HomeController extends Controller
     private $perpage = 50;
     public function index(){
         $data['featured'] = Products::orderByDesc('id')->limit(6)->get()->toArray();
+        
         $data['latest'] = Products::orderBy('created_at')->limit(6)->get()->toArray();
-
         return view('home',$data);
     }
     public function product_list(Request $request){
@@ -26,6 +26,19 @@ class HomeController extends Controller
         $records = $records->toArray();
         $records['pagination'] = $links;
         $data['list']   =   $records;
+        $data['label']   =   'SHOP';
+        $data['categories'] = Categories::all()->toArray();
+        return view('shop',$data);
+    }
+    public function product_category(Request $request,$id){
+        $records   = Products::where('cat_id',$id);
+        $records            = $records->paginate($this->perpage);
+        $records->appends($request->all())->links();
+        $links = $records->links();
+        $records = $records->toArray();
+        $records['pagination'] = $links;
+        $data['list']   =   $records;
+        $data['label'] = Categories::where('id',$id)->get()->first()->name;
         $data['categories'] = Categories::all()->toArray();
         return view('shop',$data);
     }

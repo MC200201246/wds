@@ -49,7 +49,7 @@
 										<td>{{$val['brand_id']}}</td>
 										<td>{{$val['cat_id']}}</td>
 										<td style="">
-											<a class="dropdown-item delete"  href="javascript:void(0);" data-url="{{ route('category_delete').'/'.$val[$module['db_key']] }}" data-remove="list_{{$val[$module['db_key']]}}" style="display: inline;"><i class="fa fa-trash"></i> Delete</a> | 
+											<a class="dropdown-item delete"  href="javascript:void(0);" data-url="{{ route('product_delete').'/'.$val[$module['db_key']] }}" data-remove="list_{{$val[$module['db_key']]}}" style="display: inline;"><i class="fa fa-trash"></i> Delete</a> | 
 											<a href="javascript:void(0);" data-target="#data_modal" data-toggle="modal" onclick="loadModal('{{$module['action']}}/edit','{{$val[$module['db_key']]}}')" style="display: inline;">
 												<i class="fa fa-edit"></i> Edit
 											</a>

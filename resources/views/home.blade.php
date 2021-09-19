@@ -11,16 +11,16 @@
     </ol>
     <div class="carousel-inner" >
         <div class="carousel-item active">
-            <img  src="{{ asset('images/s1.jpg') }}" alt="First slide" style="height: 500px; width:100%; object-fit: cover;">  
+            <img  src="{{ asset('images/slide1.jpeg') }}" alt="First slide" style="height: 500px; width:100%; object-fit: cover;">  
         </div>
         <div class="carousel-item">
-            <img  src="{{ asset('images/s2.jpg') }}" alt="second slide" style="height: 500px; width:100%; object-fit: cover;">
+            <img  src="{{ asset('images/slide2.jpg') }}" alt="second slide" style="height: 500px; width:100%; object-fit: cover;">
         </div>
         <div class="carousel-item">
-            <img  src="{{ asset('images/s4.jpg') }}" alt="third slide" style="height: 500px; width:100%; object-fit: cover;">
+            <img  src="{{ asset('images/slide3.jpg') }}" alt="third slide" style="height: 500px; width:100%; object-fit: cover;">
         </div>
         <div class="carousel-item" >
-            <img  src="{{ asset('images/s7.jpg') }}" alt="Fourth slide" style="height: 100%; width:100%; object-fit: cover;">
+            <img  src="{{ asset('images/slide4.jpeg') }}" alt="Fourth slide" style="height: 500px; width:100%; object-fit: cover;">
         </div>
     </div>
     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
