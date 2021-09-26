@@ -16,8 +16,8 @@
             <h1>{{ $row['name'] }}</h1>
             <h4>RS: {{ $row['price'] }}</h4>
             <small>
-                <h6><b>Brand: </b><a href="{{ url('shop?categories%5B%5D=1&categories%5B%5D=2&categories%5B%5D=3&categories%5B%5D=4&categories%5B%5D=5&brands%5B%5D='.$row['brand_id'].'&search=1') }}">{{$row['brand']['name']}}</a></h6>
-                <h6><b>Category: </b><a href="{{ url('shop?categories%5B%5D='.$row['cat_id'].'&brands%5B%5D=1&brands%5B%5D=2&brands%5B%5D=3&brands%5B%5D=4&brands%5B%5D=5&brands%5B%5D=6&search=1') }}">{{$row['category']['name']}}</a></h6>
+                <h6><b>Brand: </b><a href="{{ url('shop?brands%5B%5D='.$row['brand_id'].'&search=1') }}">{{$row['brand']['name']}}</a></h6>
+                <h6><b>Category: </b><a href="{{ url('shop?categories%5B%5D='.$row['cat_id'].'&search=1') }}">{{$row['category']['name']}}</a></h6>
             </small>
             <form action="{{ url('add_to_cart') }}" method="POST">
                 @csrf
