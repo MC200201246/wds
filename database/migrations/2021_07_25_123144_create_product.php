@@ -18,7 +18,8 @@ class CreateProduct extends Migration
             $table->string('name');
             $table->longText('description');
             $table->integer('price');
-            $table->longText('image');
+            $table->string('image')->nullable();
+            $table->boolean('is_featured')->nullable();
             $table->foreignId('brand_id')->references('id')->on('brand')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('cat_id')->references('id')->on('category')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();

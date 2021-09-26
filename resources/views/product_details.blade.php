@@ -27,7 +27,7 @@
                 @endif
             </form>
             </div>
-            <div class="col-12">
+            <div class="col-12 mb-5 pb-5">
                 <h3>Product Details</h3>
                 {{ $row['description'] }}
             </div>

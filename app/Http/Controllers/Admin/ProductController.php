@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Products;
 use App\Models\Categories;
+use App\Models\Tags;
 use App\Models\Brands;
 use Illuminate\Support\Facades\Storage;
 
@@ -32,7 +33,7 @@ class ProductController extends Controller
         if($request->perpage)
             $this->perpage = $request->perpage;
         
-        $data['list']   =   Products::paginate($this->perpage)->toArray();
+        $data['list']   =   Products::with('category','brand')->paginate($this->perpage)->toArray();
         $data['module'] = [
             'type'=>$this->type,
             'singular'=>$this->singular,
@@ -58,9 +59,20 @@ class ProductController extends Controller
                 $data['image'] = asset('storage/').'/'.$filename;
             }
             // Utility::appendRole($data);
-           
+            if($request->tags){
+                $tags = $request->tags;
+                unset($data['tags']);
+            }
+
             $Obj         = new Products;
-            $Obj->insert($data);
+            $product = $Obj->create($data);
+            if(@$tags){
+            foreach(@$tags as $tag){
+                $tag_obj = Tags::where('id',$tag)->get()->first();
+                $product->tags()->attach($tag_obj);
+            }
+
+            }
             $response = array('flag'=>true,'msg'=>$this->singular.' is added sucessfully.','action'=>'reload');
             echo json_encode($response); return;
         }
@@ -73,6 +85,7 @@ class ProductController extends Controller
                     "action"=> url($this->action.'/create')
                 );
         $data['categories'] = Categories::all()->toArray();
+        $data['tags'] = Tags::all()->toArray();
         $data['brands'] = Brands::all()->toArray();
         return view($this->view.'create_edit',$data);
     }
@@ -97,9 +110,22 @@ class ProductController extends Controller
                 $filename = Storage::putFile($this->directory, $file);
                 $data['image'] = asset('storage/').'/'.$filename;
             } 
-           
+            if($request->tags){
+                $tags = $request->tags;
+                unset($data['tags']);
+            }
             $Obj         = Products::find($id);
             $Obj->update($data);
+            foreach($Obj->tags()->get() as $p_tag){
+                $Obj->tags()->detach($p_tag->id);
+            }
+            if(@$tags){
+            foreach(@$tags as $tag){
+                $tag_obj = Tags::where('id',$tag)->get()->first();
+                $Obj->tags()->attach($tag_obj);
+            }
+
+            }
             $response = array('flag'=>true,'msg'=>$this->singular.' is updated sucessfully.','action'=>'reload');
             echo json_encode($response); return;
         }
@@ -113,9 +139,10 @@ class ProductController extends Controller
                     "action"=> url($this->action.'/edit/'.$id)
                 );
 
-        $data['row'] = Products::find($id)->toArray();
+        $data['row'] = Products::with('tags')->where('id',$id)->get()->first()->toArray();
         $data['categories'] = Categories::all()->toArray();
         $data['brands'] = Brands::all()->toArray();
+        $data['tags'] = Tags::all()->toArray();
         return view($this->view.'create_edit',$data);
     }
     public function delete($id) {

@@ -22,7 +22,7 @@
                 
                 <div class="col-md-12">
                     <div class="form-group">
-                        <label for="description" class="control-label">category description</label>
+                        <label for="description" class="control-label">tag description</label>
                         <textarea name="description" id="description" class="form-control" required="">{{@$row['description']}}</textarea>
                     </div>
                 </div>

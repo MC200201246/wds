@@ -27,12 +27,11 @@
 								<thead>
 									<tr>
 										<th>#</th>
-										<th>name</th>
-										<th>Description</th>
-										<th>price</th>
-										<th>image</th>
-										<th>brand_id</th>
-										<th>cat_id</th>
+										<th>Image</th>
+										<th>Details</th>
+										<th>Brand</th>
+										<th>Category</th>
+										<th>Price</th>
 										<th>Actions</th>
 									</tr>
 								</thead>
@@ -42,14 +41,18 @@
 									@foreach($list['data'] as $key=>$val)
 									<tr class="list_{{$val[$module['db_key']]}}">
 										<td>{{$i++}}</td>
-										<td>{{$val['name']}}</td>
-										<td>{{$val['description']}}</td>
-										<td>{{$val['price']}}</td>
-										<td>{{$val['image']}}</td>
-										<td>{{$val['brand_id']}}</td>
-										<td>{{$val['cat_id']}}</td>
+										<td>
+											{{-- <img src="{{$val['image']}}" style="width: 50px;height: 50px">  --}}
+										</td>
+										<td>
+											<b>Product: </b>{{$val['name']}}<br>
+											<b>Description: </b>{{ substr($val['description'],0,20) }}...
+										</td>
+										<td>{{$val['brand']['name']}}</td>
+										<td>{{$val['category']['name']}}</td>
+										<td>{{$val['price']}} /Rs</td>
 										<td style="">
-											<a class="dropdown-item delete"  href="javascript:void(0);" data-url="{{ route('product_delete').'/'.$val[$module['db_key']] }}" data-remove="list_{{$val[$module['db_key']]}}" style="display: inline;"><i class="fa fa-trash"></i> Delete</a> | 
+											<a class="delete"  href="javascript:void(0);" data-url="{{ route('product_delete').'/'.$val[$module['db_key']] }}" data-remove="list_{{$val[$module['db_key']]}}" style="display: inline;"><i class="fa fa-trash"></i> Delete</a> | 
 											<a href="javascript:void(0);" data-target="#data_modal" data-toggle="modal" onclick="loadModal('{{$module['action']}}/edit','{{$val[$module['db_key']]}}')" style="display: inline;">
 												<i class="fa fa-edit"></i> Edit
 											</a>

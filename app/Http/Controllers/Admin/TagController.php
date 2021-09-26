@@ -12,7 +12,7 @@ class TagController extends Controller
     private $singular =  "Tags";
     private $plural   =  "Tags";
     private $view     =  "admin.tags.";
-    private $action   =  "/admin/tags";
+    private $action   =  "/admin/tag";
     private $db_key   =  "id";
     private $user = [];
     private $perpage = 10;

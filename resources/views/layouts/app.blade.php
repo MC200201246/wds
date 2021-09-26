@@ -13,6 +13,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;300;600;700&display=swap"
     rel="stylesheet">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="{{ asset('font-awesome-4.7.0/css/font-awesome.min.css') }}">
     <link rel="shortcut icon" type="image/jpg" href="images/favicon.png">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
@@ -102,11 +103,11 @@
                                     <div class="cart_container d-flex flex-row align-items-center justify-content-end">
                                         @if(Auth::check())
                                         <div class="cart_icon"> <img style="height:50px" src="{{asset('images/bag.png')}}" alt="">
-                                            <div class="cart_count"><span>3</span></div>
+                                            <div class="cart_count"><span>{{ Auth::user()->cart_items->count() }}</span></div>
                                         </div>
                                         <div class="cart_content">
                                             <div class="cart_text"><a href="{{ url('cart') }}">Cart</a></div>
-                                            <div class="cart_price">$185</div>
+                                            <div class="cart_price">{{ cart_price() }}</div>
                                         </div>
                                         @else
                                         <div class="cart_icon"> <img style="height:50px" src="{{asset('images/bag.png')}}" alt="">
@@ -247,15 +248,15 @@
             </div>
         </div>
         <!-- js for toggle menu -->
-        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-        crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" ></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" ></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
         integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
         crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
+        @yield('scripts')
     </body>
     
     </html>
