@@ -41,17 +41,9 @@ class HomeController extends Controller
                 $records = $records->whereIn('cat_id',$request->categories);
                 $data['searched_categories'] = $request->categories;
             }
-            else{
-                $records = $records->whereNull('cat_id');
-                $data['searched_cagtegories'] = [];
-            }
             if(@$request->brands){
                 $records = $records->whereIn('brand_id',$request->brands);
                 $data['searched_brands'] = $request->brands;
-            }
-            else{
-                $records = $records->whereNull('brand_id');
-                $data['searched_brands'] = [];
             }
             $data['search'] = true;
         }
