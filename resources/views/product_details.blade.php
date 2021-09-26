@@ -12,7 +12,7 @@
             <img src="{{ $row['image'] }}" class="img-fluid">
         </div>
         <div class="col-6">
-            <p>Home</p>
+            <p><a href="{{url('/')}}"> Home</a></p>
             <h1>{{ $row['name'] }}</h1>
             <h4>RS: {{ $row['price'] }}</h4>
             <small>

@@ -22,6 +22,8 @@ class HomeController extends Controller
     }
     public function product_list(Request $request){
         $records   = new Products;
+        $data['searched_brands'] = [];
+        $data['searched_categories'] = [];
         if(@$request->search == 1){
             if($request->min>$request->max){
                 $min = $request->max;
@@ -43,7 +45,6 @@ class HomeController extends Controller
             }
             if(@$request->brands){
                 $records = $records->whereIn('brand_id',$request->brands);
-                $data['searched_brands'] = $request->brands;
             }
             $data['search'] = true;
         }
