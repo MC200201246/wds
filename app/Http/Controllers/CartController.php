@@ -28,6 +28,7 @@ class CartController extends Controller
             ];
             $data['user_id'] = Auth::user()->id;
             CartItem::create($data);
+            // dd($request->all());
             if($request->add_to_cart){
                 return redirect()->back();
            }

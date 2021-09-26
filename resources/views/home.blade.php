@@ -123,7 +123,7 @@
                     related products like Womens Clothing, Womens Dresses, Chiffon Suits, Lehenga Dresses, Blue
                     Dress in Pakistan at TheWedRobe.com!
                 </small><br><br>
-                <a href="{{ url('details/3') }}" class="btn"> <b>Buy Now</b> &#8594;</a>
+                <a href="{{ url('details/'.$featured[0]['id']) }}" class="btn"> <b>Buy Now</b> &#8594;</a>
             </div>
         </div>
     </div>

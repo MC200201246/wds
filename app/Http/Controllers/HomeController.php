@@ -42,7 +42,7 @@ class HomeController extends Controller
                 $data['searched_categories'] = $request->categories;
             }
             else{
-                $records = $records->whereNull('cagtegory_id');
+                $records = $records->whereNull('cat_id');
                 $data['searched_cagtegories'] = [];
             }
             if(@$request->brands){
@@ -54,6 +54,10 @@ class HomeController extends Controller
                 $data['searched_brands'] = [];
             }
             $data['search'] = true;
+        }
+        if(@$request->q){
+            $records = $records->where('name','LIKE','%'.@$request->q."%");
+            $data['query'] = $request->q;
         }
         $data['count'] = $records->get()->count();
         $records            = $records->paginate($this->perpage);
@@ -97,7 +101,7 @@ class HomeController extends Controller
         return view('shop',$data);
     }
     public function product_details($id){
-        $data['row'] = Products::where('id',$id)->get()->first()->toArray();
+        $data['row'] = Products::with('category','brand')->where('id',$id)->get()->first()->toArray();
         return view('product_details', $data);
     }
 }
